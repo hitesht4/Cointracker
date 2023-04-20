@@ -3,13 +3,14 @@ import React, { useContext } from "react";
 import { CoinContext } from "../context/CoinProvider";
 
 const Header = () => {
-  const { currency, setCurrency, setSymbol } = useContext(CoinContext);
+  const { setCurrency } = useContext(CoinContext);
   return (
     <Flex
       justify={"space-between"}
       align={"center"}
       padding={"1rem 6rem"}
       bg="#14161a"
+      width={"100%"}
     >
       <Text
         fontWeight={"bold"}

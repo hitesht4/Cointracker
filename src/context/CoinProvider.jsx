@@ -5,6 +5,7 @@ export const CoinContext = createContext();
 const CoinProvider = ({ children }) => {
   const [currency, setCurrency] = useState("USD");
   const [symbol, setSymbol] = useState("$");
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     if (currency === "USD") {
@@ -15,7 +16,9 @@ const CoinProvider = ({ children }) => {
   }, [currency]);
 
   return (
-    <CoinContext.Provider value={{ symbol, setSymbol, currency, setCurrency }}>
+    <CoinContext.Provider
+      value={{ symbol, setSymbol, currency, setCurrency, page, setPage }}
+    >
       {children}
     </CoinContext.Provider>
   );

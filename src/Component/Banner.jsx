@@ -10,6 +10,7 @@ const Banner = () => {
       minHeight={400}
       align={"center"}
       flexDirection={"column"}
+      gap={4}
     >
       <Flex
         justify={"center"}

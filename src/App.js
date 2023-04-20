@@ -1,12 +1,17 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Banner from "./Component/Banner";
+import Home from "./Pages/Home";
+import Coin from "./Pages/Coin";
 import Header from "./Component/Header";
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <Header />
-      <Banner />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/:coin" element={<Coin />} />
+      </Routes>
     </div>
   );
 }
