@@ -119,7 +119,7 @@ const Coin = () => {
             </Box>
           </Flex>
           <Flex flex={"2"} borderLeft={"2px solid gold"}>
-            {/* <Graph params={coin} /> */}
+            <Graph params={coin} />
           </Flex>
         </Flex>
       )}
