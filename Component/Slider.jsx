@@ -2,9 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { getTrending } from "../configs/api";
 import AliceCarousel from "react-alice-carousel";
-import { Link } from "react-router-dom";
 import Trending from "./Trending";
 import { CoinContext } from "../context/CoinProvider";
+import "react-alice-carousel/lib/alice-carousel.css";
+import Link from "next/link";
 
 export default function Slider() {
   const [trending, setTrending] = useState([]);
@@ -32,7 +33,7 @@ export default function Slider() {
   };
 
   const items = trending.map((coin) => (
-    <Link>
+    <Link href={`/coin/${coin.id}`}>
       <Trending coin={coin} />
     </Link>
   ));

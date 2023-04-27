@@ -1,6 +1,6 @@
 import { Flex, Text } from "@chakra-ui/react";
 import React from "react";
-import banner from "../assets/banner2.jpg";
+import banner from "../public/banner2.jpg";
 import Slider from "./Slider";
 
 const Banner = () => {
@@ -11,6 +11,8 @@ const Banner = () => {
       align={"center"}
       flexDirection={"column"}
       gap={4}
+      paddingTop={"4rem"}
+      className="bg"
     >
       <Flex
         justify={"center"}

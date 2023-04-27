@@ -16,7 +16,7 @@ import {
 import { CoinContext } from "../context/CoinProvider";
 import axios from "axios";
 import { CoinList } from "../configs/api";
-import { useNavigate } from "react-router-dom";
+import Link from "next/link";
 
 const thead = ["Coin", "Price", "24h Change", "Marketcap"];
 
@@ -27,7 +27,6 @@ export function numberWithCommas(x) {
 const CryptoTable = () => {
   const [coins, setCoins] = useState([]);
   const { currency, symbol, page } = useContext(CoinContext);
-  const navigate = useNavigate();
 
   const getData = async () => {
     let { data } = await axios.get(CoinList(currency));
@@ -67,38 +66,46 @@ const CryptoTable = () => {
               .map((item, index) => {
                 let profit = item?.price_change_percentage_24h >= 0;
                 return (
-                  <Tr
-                    key={index}
-                    textAlign={"center"}
-                    onClick={() => navigate(`/${item.id}`)}
-                  >
+                  <Tr key={index} textAlign={"center"}>
                     <Td className="tr">
-                      <Flex
-                        flex="1"
-                        gap="4"
-                        alignItems="center"
-                        flexWrap="wrap"
-                      >
-                        <Avatar src={item.image} />
+                      <Link href={`coin/${item.id}`}>
+                        <Flex
+                          flex="1"
+                          gap="4"
+                          alignItems="center"
+                          flexWrap="wrap"
+                        >
+                          <Avatar src={item.image} />
 
-                        <Box display={"flex"} flexDirection={"column"} gap={2}>
-                          <Heading size="sm" textTransform={"uppercase"}>
-                            {item.symbol}
-                          </Heading>
-                          <Text textTransform={"capitalize"}>{item.id}</Text>
-                        </Box>
-                      </Flex>
+                          <Box
+                            display={"flex"}
+                            flexDirection={"column"}
+                            gap={2}
+                          >
+                            <Heading size="sm" textTransform={"uppercase"}>
+                              {item.symbol}
+                            </Heading>
+                            <Text textTransform={"capitalize"}>{item.id}</Text>
+                          </Box>
+                        </Flex>
+                      </Link>
                     </Td>
                     <Td>
-                      {symbol}{" "}
-                      {numberWithCommas(item?.current_price.toFixed(2))}
+                      <Link href={`coin/${item.id}`}>
+                        {symbol}{" "}
+                        {numberWithCommas(item?.current_price.toFixed(2))}
+                      </Link>
                     </Td>
                     <Td style={{ color: profit > 0 ? "green" : "red" }}>
-                      {profit && "+"}
-                      {item?.price_change_percentage_24h?.toFixed(2)}%
+                      <Link href={`coin/${item.id}`}>
+                        {profit && "+"}
+                        {item?.price_change_percentage_24h?.toFixed(2)}%
+                      </Link>
                     </Td>
                     <Td>
-                      {symbol} {numberWithCommas(item?.market_cap.toFixed(2))}
+                      <Link href={`coin/${item.id}`}>
+                        {symbol} {numberWithCommas(item?.market_cap.toFixed(2))}
+                      </Link>
                     </Td>
                   </Tr>
                 );
